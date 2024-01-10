@@ -1,9 +1,18 @@
 const express = require('express')
-const bodyparser = require('body-parser'
-)
+const bodyparser = require('body-parser')
+const mongoose = require('mongoose')
+
 const server = new express()
 server.use(bodyparser.json())
 
+//database connectivity
+mongoose.connect('mongodb://127.0.0.1:27017/exampledb', {
+    useNewUrlParser: true
+}).then((result) => {
+    console.log("Database Connected")
+}).catch((err) => {
+    console.log("Not Connected")
+});
 
 server.get('/', (req, res) => {
     res.send("Hi...")
