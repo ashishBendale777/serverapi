@@ -30,13 +30,13 @@ server.post('/adduser', (req, res) => {
         UserEmail: req.body.UserEmail,
     }
 
-    // {
-    //     "UserName": "Ashish",
-    //     "UserPassword": "asd",
-    //     "UserEmail": "aashish@gmail.com",
-    // }
     res.status(200).json(user)
 })
+
+
+const routes = require('./Routes/Routes')
+server.use('/api/', routes)
+
 
 server.listen(5000, () => {
     console.log("Server Started")
