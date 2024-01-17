@@ -6,7 +6,8 @@ exports.addCustomer = (req, res) => {
         CustEmail: req.body.CustEmail,
         CustMobNo: req.body.CustMobNo,
         CustPassword: req.body.CustPassword,
-        CustGender:req.body.CustGender
+        CustGender:req.body.CustGender,
+        CustAge:req.body.CustAge
     })
 
     // {

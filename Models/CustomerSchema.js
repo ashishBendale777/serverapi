@@ -6,7 +6,9 @@ const CustomerSchema = mongoose.Schema({
     CustMobNo: Number,
     CustPassword: String,
     JoiningDate: { type: Date, default: new Date() },
-    CustGender: { type: String, enum: ['Male', 'Female'] }
+    CustGender: { type: String, enum: ['Male', 'Female'] },
+    CustAge: { type: Number, min: [18, "Age should be more than 18"] }
+
 })
 
 module.exports = mongoose.model('Customer', CustomerSchema)
