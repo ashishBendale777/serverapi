@@ -8,7 +8,11 @@ router.post('/deletecustomer', CustController.deleteCustomer)
 router.post('/updatecustomer', CustController.updatecustomer)
 
 
-//
+//orders routes
+const OrderController=require('../Controlers/OrderCobtroller')
+router.post('/addorder', OrderController.addOrder)
+router.get('/getallorders', OrderController.getAllOrders)
+
 
 
 //
