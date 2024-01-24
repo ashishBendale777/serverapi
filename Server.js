@@ -2,8 +2,44 @@ const express = require('express')
 const bodyparser = require('body-parser')
 const mongoose = require('mongoose')
 
+
+//
+const multer = require('multer')
+const path = require('path')
+
+
 const server = new express()
 server.use(bodyparser.json())
+
+//storage config
+const fileStorage = multer.diskStorage({
+    destination: 'Uploads',
+    filename: (req, file, cb) => {
+        cb(null, file.fieldname + "_" + Date.now() + path.extname(file.originalname))
+    }
+})
+
+//upload config
+const uploadConfig = multer({
+    storage: fileStorage,
+    fileFilter(req, file, cb) {
+        if (!file.originalname.match(/\.(png|jpg|jpeg)$/)) {
+            return cb(new Error('Upload Correct file'))
+        }
+        cb(undefined, true)
+    }
+})
+
+
+server.post('/uploadfile', uploadConfig.single('image'), (req, res) => {
+    res.status(200).json({
+        filepath: "/images/".concat(req.file.filename),
+        uploaded: true
+    })
+}, (err, req, res, next) => {
+    res.status(400).send({ error: err.message })
+})
+
 
 //database connectivity
 mongoose.connect('mongodb://127.0.0.1:27017/exampledb', {
