@@ -2,8 +2,7 @@ const express = require('express')
 const bodyparser = require('body-parser')
 const mongoose = require('mongoose')
 
-
-//
+//import multer and path
 const multer = require('multer')
 const path = require('path')
 
